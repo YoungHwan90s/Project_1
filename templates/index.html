@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <title>Mini_Project_7</title>
+    <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
+    <style>
+
+      .ourass {
+          background-color: lightgray;
+          padding-top: 30px;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: end;
+      }
+
+      .ourtitle {
+          height: 800px;
+          width: 100%;
+          color: white;
+
+          background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://w.namu.la/s/5dfed9730297d49010e450326a171346b2399ce3fc816760379ff0945b0d16ec37dd2dcf6de462bd4ab75c144cee00f94dd99d6a102b65bfd046db7c8dfe23a6c7320f51fbfaf791f1d3b4f8ca58c6fe409b3e2bd6bd3215aa4dc30086a9a5e0b30238cd9a315b19dcb211d74c4c938c");
+          background-position: center;
+
+          font-weight: bold;
+          font-size: xx-large;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .myspan {
+          color: deepskyblue;
+          font-family: 'Black And White Picture', sans-serif;
+          font-size: xxx-large;
+      }
+
+      .ourmind {
+          font-family: 'Dokdo', cursive;
+          font-size: xxx-large;
+          font-weight: normal;
+      }
+
+      .ourgoal {
+          font-family: 'Dokdo', cursive;
+          font-size: xxx-large;
+          font-weight: normal;
+      }
+
+      .bigbox {
+          color: white;
+          text-align: center;
+          width: 1250px;
+          height: 350px;
+
+          margin: 0 auto;
+          background: black;
+          padding: 10px 0;
+      }
+
+      .pic {
+          float: left;
+          width: 200px;
+          height: 200px;
+          border: 5px solid white;
+          margin-left: 40px;
+          margin-top: 30px;
+          text-align: center;
+          filter: brightness(70%); border-radius: 10px;
+      }
+
+      .bigbox > img:hover {
+          border: 2px solid white;
+          width: 220px;
+          height: 220px;
+
+          filter: none;
+      }
+
+      .sub-container {
+        display: flex;
+        width: 100%;
+        height: 20%;
+        {#justify-content: center;#}
+        align-items: center;
+        
+        text-align: center;
+        font-size: 30px;
+        /* background-color: red; */
+      }
+
+      .sub-container div {
+        margin-left: 150px;
+      }
+
+      .sub-container img {
+        width: 100px;
+        height: 50px;
+
+        border: 2px solid black;
+        cursor: pointer;
+      }
+        .comment-buttons {
+            width: 300px;
+
+            /* 상자(나) 안 내용물 가운데 정렬하기 4형제 */
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            margin: 20px auto;
+        }
+
+        .comment-buttons > button {
+            margin: 0px 5px;
+        }
+
+    </style>
+    <script>
+                let count = 0;
+        let doc = [];
+        $(document).ready(function () {
+            show_comment()
+        });
+
+                // GET - 댓글 불러오기
+        function show_comment() {
+            $('#comment-cards').empty()
+            $.ajax({
+                type: "GET",
+                url: "/api/load_comment",
+                data: {},
+                success: function (response) {
+                    doc = response['comments_list']
+                    for (let i = 0; i < doc.length; i++) {
+                        let comment = doc[i]['comment']
+                        let name = doc[i]['name']
+                        let time = doc[i]['time']
+                        let temp_html = `    <div class="card">
+                                        <div class="card-body">
+                                            <blockquote class="blockquote mb-0">
+                                                <small text-align="right">${time}</small>
+                                                <p>${comment}</p>
+                                                <footer class="blockquote-footer">${name}</footer>
+                                            </blockquote>
+                                        </div>
+                                    </div>`
+                        $('#comment-cards').append(temp_html)
+                    }
+                }
+            });
+        }
+        // 최신순 정렬
+        function new_comment() {
+            $('#comment-cards').empty()
+
+            function sort_field(field_name) {
+                return (a, b) => a[field_name] > b[field_name] ? -1 : 1;
+            }
+
+            let rows = doc.sort(sort_field("time"))
+            for (let i = 0; i < rows.length; i++) {
+                let comment = rows[i]['comment']
+                let name = rows[i]['name']
+                let time = rows[i]['time']
+                let temp_html = `    <div class="card">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                        <small text-align="right">${time}</small>
+                                        <p>${comment}</p>
+                                        <footer class="blockquote-footer">${name}</footer>
+                                    </blockquote>
+                                </div>
+                            </div>`
+                $('#comment-cards').append(temp_html)
+            }
+            if ($('#comment-cards').is(':hidden')) {
+                $('#comment-cards').show();
+            }
+        }
+        // 과거수 정렬
+        function old_comment() {
+            $('#comment-cards').empty()
+
+            function sort_field(field_name) {
+                return (a, b) => a[field_name] > b[field_name] ? 1 : -1;
+            }
+
+            let rows = doc.sort(sort_field("time"))
+            for (let i = 0; i < rows.length; i++) {
+                let comment = rows[i]['comment']
+                let name = rows[i]['name']
+                let time = rows[i]['time']
+                let temp_html = `    <div class="card">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                        <small text-align="right">${time}</small>
+                                        <p>${comment}</p>
+                                        <footer class="blockquote-footer">${name}</footer>
+                                    </blockquote>
+                                </div>
+                            </div>`
+                $('#comment-cards').append(temp_html)
+            }
+            if ($('#comment-cards').is(':hidden')) {
+                $('#comment-cards').show();
+            }
+        }
+        // 댓글 닫기
+        function hideComments() {
+            if ($('#comment-cards').is(':visible')) {
+                $('#comment-cards').hide();
+            }
+        }
+    </script>
+</head>
+<body>
+
+  <div class="ourass">
+      <h1 style="font-size: large; font-weight: bold">
+          스파르타코딩클럽 내일배움캠프 4기 Node.js트랙 B반 7조 미니프로젝트 - 팀 소개&nbsp;&nbsp;&nbsp;
+      </h1>
+  </div>
+  <div class="ourtitle">
+      <div>
+          <p>우리는 <span class="myspan">C H I L L</span> 조 형제들</p>
+      </div>
+      <div class="ourmind">
+          <hr>
+          <p>★ 우리의 결의 :</p>
+          <p style="color: lightgoldenrodyellow">🔥🔥🔥중요한 것은 꺾이지 않는 마음🔥🔥🔥</p>
+          <p style="font-size: xx-large">더 이상의 설명은 생략한다!</p>
+          <hr>
+          <p>★ 우리의 목표 :</p>
+          <p style="color: lightgoldenrodyellow">전국구 모각코 형제들 전 세계로 뻗어나가!!!</p>
+          <p style="font-size: xx-large">전국(서울, 경기, 강원, 전북, 경북)에서 모인 우리 형제들은 </p>
+          <p style="font-size: xx-large">ZEP이란 정신과 시간의 방에 모여, 먹고 자고 코딩만 하는 </p>
+          <p style="font-size: xx-large">지옥같은 시련을 수료하고, 배운바를 평생 매진하여 전세계를 평정한다. </p>
+      </div>
+      <div class="ourgoal">
+      </div>
+  </div>
+
+  <div class="bigbox">
+    <h2 class="expanded">RANGERS</h2>
+    <div>ASSEMBLE</div>
+    <img class="pic" src="https://bbts1.azureedge.net/images/p/full/2021/10/d03088a7-1a73-44a8-aed5-b1e56da4e9e9.jpg"
+      alt="red ranger" id="page_1">
+    <img class="pic"
+      src="https://cdn.shopify.com/s/files/1/0059/2602/7298/products/UL-MMPR_W3_BlueRanger_hero_2048_2048x2048_eccaac30-7b75-4f59-ad17-0929f2ec14c7.webp?v=1649188701"
+      alt="blue ranger" id="page_2">
+    <img class="pic"
+      src="https://cdn.shopify.com/s/files/1/0059/2602/7298/products/UL-MMPR_W3_BlackRanger_hero_2048_2048x2048_47f8fb64-6b40-4571-ae9d-f9108e33bb84.webp?v=1649190590"
+      alt="black ranger" id="page_3">
+    <img class="pic" src="https://i.pinimg.com/originals/6b/95/6d/6b956da7f9d9a7e6f5bb058e6d51f434.jpg"
+      alt="yellow ranger" id="page_4">
+    <img class="pic" src="https://bbts1.azureedge.net/images/p/full/2022/05/651240b9-dca6-474e-8af5-b685e070963f.jpg"
+      alt="pink ranger" id="page_5">
+  </div>
+
+  <div class="main-background">
+    <div class="sub-container">
+      <div>
+        <img src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fimages.velog.io%2Fvelog.png" id="link_1">
+        <h5>정창민</h5>
+      </div>
+      <div>
+        <img src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fimages.velog.io%2Fvelog.png" id="link_2">
+        <h5>오영환</h5>
+      </div>
+      <div>
+        <img src="https://velog.velcdn.com/images/zhd5379/post/be9ceda5-a7c6-4be3-93bd-93338d07cd5f/img.png" id="link_3">
+        <h5>이승현</h5>
+      </div>
+      <div>
+        <img src="https://comeinsidebox.com/wp-content/uploads/2021/07/TISTORY-%EB%A1%9C%EA%B3%A0.png" id="link_4">
+        <h5>장준호</h5>
+      </div>
+      <div>
+        <img src="https://comeinsidebox.com/wp-content/uploads/2021/07/TISTORY-%EB%A1%9C%EA%B3%A0.png" id="link_5">
+        <h5>김희서</h5>
+      </div>
+    </div>
+  </div>
+    <div class="comment-buttons">
+    <!--    댓글 보기는 '과거순'이 디폴트-->
+        <button onclick="old_comment()" type="button" class="btn btn-outline-primary">과거순</button>
+        <button onclick="new_comment()" type="button" class="btn btn-outline-danger">최신순</button>
+        <button onclick="hideComments()" type="button" id="hideComments" class="btn btn-outline-secondary">닫기</button>
+    </div>
+    <div class="comment-cards" id="comment-cards"></div>
+
+  <script>
+
+    // 개인 블로그 -------------------------------
+    $('#link_1').on('click', () => location.href="https://velog.io/@ckdals1994" );
+      
+    $('#link_2').on('click', () => location.href="https://velog.io/@younghwan_90s" );
+
+    $('#link_3').on('click', () => location.href="https://ruby-bougon-ec8.notion.site/TIL-1-a285a9c4b5fd4f58842c3c15690ee34e" );
+
+    $('#link_4').on('click', () => location.href="https://jjoonnoo.tistory.com/" );
+
+    $('#link_5').on('click', () => location.href="https://dev-ocean.tistory.com/" );
+    // -------------------------------------
+
+    // 개인 페이지 이동//-----------------------------
+    $('#page_1').on('click', () => location.href="/red" );
+      
+    $('#page_2').on('click', () => location.href="/blue" );
+
+    $('#page_3').on('click', () => location.href="/black" );
+
+    $('#page_4').on('click', () => location.href="/yellow" );
+
+    $('#page_5').on('click', () => location.href="/pink" );
+    //-------------------------------------------
+
+  </script>
+
+</body>
+</html>

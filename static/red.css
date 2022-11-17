@@ -1,0 +1,131 @@
+body {
+  font-family: cursive;
+}
+
+.nav-design {
+  background-color: #eee;
+  border: none;
+  border-radius: 10px;
+}
+
+.nav-text {
+  color: #696969;
+  cursor: pointer;
+}
+
+.main-background {
+  width: 100%;
+  height: 800px;
+  padding: 20x;
+  
+
+  position: relative;
+}
+
+.main-background img{
+  width: 80%;
+  height: 80%;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  border-radius: 10px;
+  border: none;
+}
+.main-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  color: white;
+}
+
+
+html, body {
+  height: 100%;
+}
+
+.sub-background {
+  width: 700px;
+  height: 100%;
+  background-color: #eee;
+
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+
+  text-align: center;
+}
+
+.sub-background img {
+  width: 20%;
+  height: 25%;
+  margin-top: 30px;
+}
+
+
+.sub-background2 {
+  width: 700px;
+  height: 100%;
+  background-color: #eee;
+
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+
+  text-align: center;
+}
+
+.sub-background3 h5 {
+  margin-top: 50px;
+}
+
+.sub-background3 {
+  width: 700px;
+  height: 100%;
+  background-color: #eee;
+
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+
+  text-align: center;
+}
+
+.mypost {
+  width: 95%;
+  max-width: 500px;
+  margin: 20px auto 20px auto;
+
+  box-shadow: 0px 0px 3px 0px black;
+  padding: 20px;
+}
+
+.mypost > button {
+  margin-top: 15px;
+}
+
+.mycards {
+  width: 95%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.mycards > .card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.mongo {
+  text-align: center;
+}
+
+.show {
+  background-color: black;
+}
+
+.ground-show {
+  display: block;
+}

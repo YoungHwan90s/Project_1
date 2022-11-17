@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+    crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../static/red.css">
+
+</head>
+<body>
+  <div class="container mt-5">
+    <ul class="nav justify-content-center mt-5 nav-design">
+      <li class="nav-item">
+        <a class="nav-link active nav-text" aria-current="page">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-text">ABOUT</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-text">CAREER</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-text">CERTIFICATE</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-text">
+          <span class="badge bg-dark">Light 🔄</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-text">MAIN HOME</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container mt-5">
+    <div class="main-background">
+      <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t39.30808-6/315562503_107647995500846_5225943547929228010_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=730e14&_nc_ohc=pYvkpF-zCuAAX9ckXOP&_nc_ht=scontent-ssn1-1.xx&oh=00_AfBdZqjNjTIjLBabgl_VIpQmRlnvHErtNcHdeCptjneTRw&oe=63778DBE">
+      <h1 class="main-text">Hi, I'm Chang min</h1>
+    </div>
+  </div>
+
+  <div class="sub-background container">
+    <h1 style="color: black;">ABOUT ME</h1>
+    <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t39.30808-6/315631729_107648202167492_8683505184966234691_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=730e14&_nc_ohc=mbkREc18PMMAX-YLYtT&_nc_ht=scontent-ssn1-1.xx&oh=00_AfC_qCufM2rCnPrd4Vn5hu5VDgJJhKBiW5fuQz1PUwufKg&oe=63789A32" >
+    <h4 style="margin-top: 30px; font-weight: bold;">내일배움캠프 4기 정창민입니다</h4>
+    <p style="margin-top: 40px;">기술력에 대한 열망을 쫓아 Lithium-ion battery Winding Machine을 제어하던 도중</p>
+    <p>스크립트 형태의 로직 속에서 코딩에 대한 관심이 점점 커지게 되었습니다.</p>
+    <p style="margin-top: 40px;">유저들이 많이 데이터를 접할 수 있게, 효율적으로 db를 관리하고 유지보수 차원에서</p>
+    <p> 다른 개발자들이 쉽게 수정할 수 있게 코딩을 간결하게 하는</p>
+    <p>백엔드 개발자가 되고 싶어 도전하게 됐습니다.</p>
+
+    <p style="margin-top: 40px;">1. 심장이 터질듯한 격한 운동을 좋아하고, 모든 일에 적극적입니다. MBTI: ESFP</p>
+    <p>2. 감성이 풍부하고 섬세합니다.</p>
+    <p>3. 협업을 위해 사람들의 긴장을 풀어주고 대화할 환경을 조성해주는 화합을 이루려는 스타일입니다.</p>
+    <h3>Thank you</h3>
+
+  </div>
+
+  <div class="sub-background2 container">
+    <h1 style="color: black;">CAREER</h1>
+    <h3 style="margin-top: 50px;">백엔드 개발자의 커리어로 채워나갈 예정!</h3>
+  </div>
+
+  <div class="sub-background3 container">
+    <h1 style="color: black;">CERTIFICATE</h1>
+      <h5>17.12 무선설비산업기사</h5>
+      <h5>18.11 전자산업기사</h5>
+      <h5>19.11 한국사능력검정 1급</h5>
+      <h5>18.06 1종보통운전면허</h5>
+  </div>
+
+  <div class="container last-background">
+    <div class="mongo">
+      <h3>방명록</h3>
+    </div>
+
+    <div class="mypost mb-5">
+      <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="name" placeholder="url">
+          <label for="floatingInput">닉네임</label>
+      </div>
+      <div class="form-floating">
+          <textarea class="form-control" placeholder="Leave a comment here" id="comment"
+                    style="height: 100px"></textarea>
+          <label for="floatingTextarea2">응원댓글</label>
+      </div>
+      <button onclick="save_comment()" type="button" class="btn btn-dark">응원 남기기</button>
+    </div>
+      <div class="mycards" id="comment-list">
+      </div>
+    
+    <div class="mongo">
+      <h3>Thank you</h3>
+    </div>
+  </div>
+
+  <script>
+
+    var counter = 0;
+
+    var 탭버튼 = $('.nav-item');
+
+    탭버튼.eq(5).on('click', () => location.href="/" );
+
+    $('.badge').on('click', () => { // 다크모드
+      counter++;
+      if(counter % 2 == 1) {
+        $('body').addClass('show');
+        $('.badge').html('Dark 🔄');
+      } else {
+        $('body').removeClass('show');
+        $('.badge').html('Light 🔄');
+      }
+    })
+
+    $(document).ready(() => {
+          탭버튼.eq(0).on('click', () => {
+        $('.main-background').fadeIn(2000);  // 실행 시 숨겨진 요소를 나타나게 한다
+        $('.last-background').fadeIn(2000);  
+        $('.sub-background').fadeOut(1000);
+        $('.sub-background2').fadeOut(1000);
+        $('.sub-background3').fadeOut(1000);
+      })
+
+
+      탭버튼.eq(1).on('click', () => {
+        $('.main-background').fadeOut(1000);  // 실행 시 요소를 사라지게 한다
+        $('.sub-background2').fadeOut(1000);
+        $('.sub-background3').fadeOut(1000);
+        $('.last-background').fadeOut(1000);
+        $('.sub-background').fadeIn(2000);
+      })
+
+      탭버튼.eq(2).on('click', () => {
+        $('.main-background').fadeOut(1000);  
+        $('.sub-background').fadeOut(1000);
+        $('.sub-background3').fadeOut(1000);
+        $('.last-background').fadeOut(1000);
+        $('.sub-background2').fadeIn(2000);
+      })
+
+      탭버튼.eq(3).on('click', () => {
+        $('.main-background').fadeOut(1000);
+        $('.sub-background').fadeOut(1000);
+        $('.sub-background2').fadeOut(1000);
+        $('.last-background').fadeOut(1000);
+        $('.sub-background3').fadeIn(2000);
+      })
+    });
+
+
+  </script>
+
+  <script>
+
+        // POST - 댓글 저장하기
+        function save_comment() {
+            let name = $('#name').val()
+            let comment = $('#comment').val()
+            let today = new Date()
+            let time = today.toLocaleString()
+            $.ajax({
+                type: 'POST',
+                url: '/api/save_comment',
+                data: {name_give: name, comment_give: comment, time_give: time},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
+        }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+  crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <title>About JN</title>
+    <style>
+        *{
+            font-family: 'Noto Sans KR', sans-serif;
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style:none;
+        }
+        a{
+            text-decoration:none;
+        }
+        header {
+            height: 75px;
+            background-color: #b5db92;
+            position: fixed;
+            width: 100%;
+            z-index:9999;
+            top: 0;
+            left: 0;
+        }
+        h1{
+            color: white;
+            line-height: 75px;
+            float:left;
+        }
+        .wrap {
+            width: 1024px;
+            margin: 0 auto;
+        }
+        .menu{
+            float:right;
+        }
+        .menu li{
+            float:left;
+        }
+        .menu a{
+            line-height: 75px;
+            color: white;
+            padding: 0 15px;
+            display: block;
+        }
+        .mbti{
+            width: 100%;
+            max-width:700px;
+            height: 800px;
+            margin: auto;
+            background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("https://ddnews.co.kr/wp-content/uploads/2021/12/INFP-1.png");
+            background-position: center;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .game_image{
+            width: 100%;
+            max-width: 700px;
+            height: 800px;
+            margin: auto;
+            background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F67f841ca-e148-4388-9be7-bd89b22586c8%2FSelfie_20221020_%25ED%259C%25BC%25EB%25A5%25AD_001.jpg?table=block&id=a2a836d5-2533-4bce-bd0e-d3b1ae7c5ad6&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=1260&userId=&cache=v2");
+            background-position: center;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .make_something{
+            width: 100%;
+            max-width: 700px;
+            height: 800px;
+            margin: auto;
+            background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Feb025bac-73b1-427f-bf6d-9dbd5cafc3ce%2FUntitled.png?table=block&id=457bb0ec-3b94-46dc-81ca-d1c0c5d65f1d&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=1260&userId=&cache=v2");
+            background-position: center;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .lock_lee{
+            width: 100%;
+            max-width: 700px;
+            height: 800px;
+            margin: auto;
+            background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("https://mblogthumb-phinf.pstatic.net/20130318_64/sengokus_13635878031124totA_JPEG/1.jpg?type=w2");
+            background-position: center;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .ggang{
+            width: 100%;
+            max-width: 700px;
+            height: 800px;
+            margin: auto;
+            background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("http://jjal.today/data/file/gallery/1028612757_lM5AsgeU_59f9b0985577f3793835e964fb58dd7d0252122b.jpeg");
+            background-position: center;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header >
+        <div class="wrap">
+            <h1>JooNoo</h1>
+            <nav>
+                <ul class="menu">
+                    <li><a href="/main">Main</a></li>
+                    <li><a href="/yellow">Home</a></li>
+                    <li><a href="/about_jn">About JN</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div style="text-align:center">
+            <div class="mbti">
+                <h1>저의 MBTI는 INFP에요</h1>
+                <p>워낙 내향적이라 숫기가 없어요</p>
+            </div>
+            <div class="game_image">
+                <h1>저는 게임을 좋아해요</h1>
+                <p>지금 보시는 거는 로스트아크 라는 게임에서의 저의 캐릭터 입니다</p>
+            </div>
+            <div class="make_something">
+                <h1>자취생이라 이것저것 해먹어요</h1>
+                <p>제가 만든 갈비찜이에요</p>
+            </div>
+            <div class="lock_lee">
+                <h1>제가 객관적이 될 수 없기에</h1>
+                <p>친구들이 저보고 노력형 천재라고해요</p>
+                <p>저는 재밌거나 흥미롭다고 느끼면 죽어라고 파는 성격이에요</p>
+                <p>마치 록리처럼...</p>
+            </div>
+            <div class="ggang">
+                <h1>아직 경험이 없어서</h1>
+                <p>머리 깨지도록 한번 해보고 써야될듯해요</p>
+                <p>제 경향은 서포트쪽인것 같아요</p>
+                <p>아이디어를 배출하고 잘못된 부분을 바로잡고 그런식..?</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

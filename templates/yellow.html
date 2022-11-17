@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <title>저를 소개합니다!</title>
+    <style>
+        *{
+            font-family: 'Noto Sans KR', sans-serif;
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style:none;
+        }
+        a{
+            text-decoration:none;
+        }
+        header {
+            height: 75px;
+            background-color: #b5db92;
+            position: fixed;
+            width: 100%;
+            z-index:9999;
+            top: 0;
+            left: 0;
+        }
+        h1{
+            color: white;
+            line-height: 75px;
+            float:left;
+        }
+        .wrap {
+            width: 1024px;
+            margin: 0 auto;
+        }
+        .menu{
+            float:right;
+        }
+        .menu li{
+            float:left;
+        }
+        .menu a{
+            line-height: 75px;
+            color: white;
+            padding: 0 15px;
+            display: block;
+        }
+        main{
+            margin-top:75px;
+        }
+        .mypost {
+            width: 95%;
+            max-width: 500px;
+            margin: 20px auto 20px auto;
+
+            box-shadow: 0px 0px 3px 0px black;
+            padding: 20px;
+        }
+        .pic1{
+            width: 100%;
+            max-width: 360px;
+            height: 360px;
+            margin: auto;
+            background-image: url("https://i.ibb.co/p3C7qYm/i14666977824.jpg");
+        }
+        .mycard{
+            max-width:500px;
+            width: 95%;
+            margin: 10px auto 0 auto;
+        }
+
+        .rotation_something{
+            width: 360px;
+            height: 360px;
+            margin: 60px auto;
+            background-image : url("https://i.ibb.co/BypzK7m/i13765405501.png");
+            transition: all ease 0.5s;
+        }
+    </style>
+    <script>
+        let count = 0;
+        let doc = [];
+        $(document).ready(function () {
+            show_comment()
+        });
+        // POST - 댓글 저장하기
+        function save_comment() {
+            let name = $('#name').val()
+            let comment = $('#comment').val()
+            let today = new Date()
+            let time = today.toLocaleString()
+            $.ajax({
+                type: 'POST',
+                url: '/api/save_comment',
+                data: {name_give: name, comment_give: comment, time_give: time},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
+        }
+
+        function rotation(e){
+            count++;
+            let deg = count*180;
+            e.style.transform = "rotate("+deg+"deg)";
+        }
+
+    </script>
+</head>
+<body>
+    <header>
+        <div class="wrap">
+            <h1>JooNoo</h1>
+            <nav>
+                <ul class="menu">
+                    <li><a href="/">Main</a></li>
+                    <li><a href="/yellow">Home</a></li>
+                    <li><a href="/about_jn">About JN</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="pic1">
+    </div>
+    <main>
+        <h2 style="text-align: center">안녕하세요 여러분 제 페이지에 오셔서 감사합니다</h2>
+        <div class="mycard">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fbe47d20f-7ca9-4dc1-a649-03d2345634a7%2FKakaoTalk_20221017_145039690.jpg?table=block&id=538f7a12-d08e-4e12-b0d0-509b6c537e0c&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=710&userId=&cache=v2"
+                            class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">장준호</h5>
+                            <p class="card-text">생년월일 : 97년 6월 28일</p>
+                            <p class="card-text">취미 : 게임,여행</p>
+                            <p class="card-text">전공 : 컴퓨터과학</p>
+                            <p class="card-text"><small class="text-muted">저는 전공자이지만 프로젝트 경험이 없는 말하는 감자입니다.</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="rotation_something" onclick="rotation(this)">누르면 빙빙 돌아요</div>
+        </div>
+        <div class="mypost">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name" placeholder="url">
+                <label for="floatingInput">닉네임</label>
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="comment" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">댓글</label>
+            </div>
+            <button onclick="save_comment()" type="button" class="btn btn-dark">댓글 남기기</button>
+        </div>
+    </main>
+</body>
+</html>
