@@ -25,12 +25,14 @@
       }
 
       .ourtitle {
-          height: 800px;
+          height:1500px;
           width: 100%;
           color: white;
 
           background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://w.namu.la/s/5dfed9730297d49010e450326a171346b2399ce3fc816760379ff0945b0d16ec37dd2dcf6de462bd4ab75c144cee00f94dd99d6a102b65bfd046db7c8dfe23a6c7320f51fbfaf791f1d3b4f8ca58c6fe409b3e2bd6bd3215aa4dc30086a9a5e0b30238cd9a315b19dcb211d74c4c938c");
           background-position: center;
+
+            background-size: cover;
 
           font-weight: bold;
           font-size: xx-large;
@@ -66,7 +68,7 @@
           height: 350px;
 
           margin: 0 auto;
-          background: black;
+
           padding: 10px 0;
       }
 
@@ -93,9 +95,8 @@
         display: flex;
         width: 100%;
         height: 20%;
-        {#justify-content: center;#}
+        justify-content: center;
         align-items: center;
-        
         text-align: center;
         font-size: 30px;
         /* background-color: red; */
@@ -252,7 +253,6 @@
       </div>
       <div class="ourgoal">
       </div>
-  </div>
 
   <div class="bigbox">
     <h2 class="expanded">RANGERS</h2>
@@ -295,6 +295,8 @@
       </div>
     </div>
   </div>
+      </div>
+  <button onclick="show_comment()" type="button" class="btn btn-outline-light" id="reload_comment">방명록 보기</button>
     <div class="comment-buttons">
     <!--    댓글 보기는 '과거순'이 디폴트-->
         <button onclick="old_comment()" type="button" class="btn btn-outline-primary">과거순</button>
